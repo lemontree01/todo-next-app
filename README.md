@@ -1,2 +1,2 @@
-# tobee-live-todo-next
-Тестовое задание для Tobee.Live 
+Тестовое задание для Tobee.Live
+Максим Цой
