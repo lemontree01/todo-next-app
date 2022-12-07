@@ -1,7 +1,7 @@
-import Todos from './../components/Todos';
+import Todos from "./../components/Todos";
 
-const Home = ({todos, handleToggle}) => ( 
-      <Todos todos={todos} handleToggle={handleToggle}/>
-)
+const Home = ({ todos, handleToggle }) => (
+  <Todos todos={todos} handleToggle={handleToggle} />
+);
 
-export default Home
+export default Home;

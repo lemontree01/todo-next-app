@@ -1,7 +1,10 @@
-import Todos from "../components/Todos"
+import Todos from "../components/Todos";
 
-const Active = ({todos}) => (
-  <Todos todos={todos.filter(({isDone})=> !isDone)}/>
-)
+const Active = ({ todos, handleToggle }) => (
+  <Todos
+    todos={todos.filter(({ isDone }) => !isDone)}
+    handleToggle={handleToggle}
+  />
+);
 
-export default Active
+export default Active;
