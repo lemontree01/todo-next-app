@@ -1,9 +1,9 @@
-import styles from "../styles/Layout.module.css";
 import { useState } from "react";
 
 const Todo = ({ todo, handleToggle }) => {
   const [isModifying, setIsModifying] = useState(false);
   const [currentValue, setCurrentValue] = useState(todo.value);
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleTodoChange = (e) => {
     setCurrentValue(e.target.value);
@@ -21,16 +21,40 @@ const Todo = ({ todo, handleToggle }) => {
   };
 
   return (
-    <div className={styles.todo} onClick={handleDoubleClick}>
-      <div>Value: {todo.isDone ? "Done" : "Not done"}</div>
+    <div
+      className={"todo"}
+      onMouseOver={() => {
+        setIsHovered(true);
+      }}
+      onMouseLeave={() => {
+        setIsHovered(false);
+      }}
+      onClick={handleDoubleClick}
+    >
+      <div className="mark" onClick={() => handleToggle(todo.id, "toggle")}>
+        <div className={`circle ${todo.isDone && "active"}`}>
+          {todo.isDone && <>&#10003;</>}
+        </div>
+      </div>
       {isModifying ? (
-        <input value={currentValue} onChange={handleTodoChange} />
+        <input
+          onBlur={handleSubmit}
+          value={currentValue}
+          onChange={handleTodoChange}
+        />
       ) : (
-        <div>{todo.value}</div>
+        <div className={`todo-text ${todo.isDone && "crossed"}`}>
+          {todo.value}
+        </div>
       )}
-      <button onClick={handleSubmit}>Submit</button>
-      <button onClick={() => handleToggle(todo.id, "toggle")}>Toggle</button>
-      <button onClick={() => handleToggle(todo.id, "delete")}>Delete</button>
+      {isHovered && (
+        <div
+          onClick={() => handleToggle(todo.id, "delete")}
+          className={"delete"}
+        >
+          &#10005;
+        </div>
+      )}
     </div>
   );
 };

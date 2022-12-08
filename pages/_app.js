@@ -8,6 +8,7 @@ function MyApp({ Component, pageProps }) {
   const [todos, setTodos] = useState([]);
   const [currentTodo, setCurrentTodo] = useState("");
   const [currentMode, setCurrentMode] = useState("All");
+  const [allTodosMode, setAllTodosMode] = useState(false)
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && e.target.value !== "") {
@@ -46,6 +47,7 @@ function MyApp({ Component, pageProps }) {
         isDone: prev.filter((todo) => !todo.isDone).length,
       }))
     );
+    setAllTodosMode(!!todos.filter((todo) => !todo.isDone).length)
   };
 
   const clearCompleted = () => {
@@ -68,6 +70,7 @@ function MyApp({ Component, pageProps }) {
             currentMode,
             setCurrentMode,
             toggleAllTodos,
+            allTodosMode,
             todosLeft: todos.filter((todo) => !todo.isDone).length,
           },
           clearCompleted,
